@@ -1,0 +1,18 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Lambda application that calls the Lambda API.
+Resources:
+  function:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      ImageConfig:
+        Command: ["app.handler"]
+      Description: Call the AWS Lambda API
+      Timeout: 100
+      # Function's execution role
+      Role: arn:aws:iam::252918183771:role/g7-capitals-compare
+      Tracing: Active
+    Metadata:
+      Dockerfile: Dockerfile
+      DockerContext: .
